@@ -1,0 +1,5 @@
+example.com {
+	log
+	encode zstd gzip
+	reverse_proxy localhost:3000
+}
