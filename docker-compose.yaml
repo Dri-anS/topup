@@ -1,0 +1,22 @@
+services:
+  topup:
+    build: .
+    container_name: topup
+    env_file:
+      - ./.env
+    restart: always
+    ports:
+      - 3000:3000
+  caddy:
+    build:
+      context: .
+      dockerfile: caddy.Dockerfile
+    container_name: caddy
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy-config:/config
+      - ./caddy-data:/data
+    environment:
+      LOG_FILE: "/data/access.log"

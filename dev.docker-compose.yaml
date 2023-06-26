@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_demo
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: super_admin
+      POSTGRES_PASSWORD: SomeSecretPassword
+      PGDATA: /data/postgres
+    volumes:
+       - ./database:/data/postgres
+    ports:
+      - "5432:5432"

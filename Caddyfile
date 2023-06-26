@@ -1,0 +1,15 @@
+example.com {
+	tls {
+		dns cloudflare {env.CF_API_TOKEN}
+	}
+	log
+	reverse_proxy localhost:8080
+}
+
+www.example.com {
+	tls {
+		dns cloudflare {env.CF_API_TOKEN}
+	}
+	log
+  	redir https://example.com{uri}
+}
